@@ -30,7 +30,7 @@ const ExpenseForm = (props) => {
     };
     // console.log(userInputExpenseData); //確認剛剛做的物件有沒有正確
 
-    //執行從NewExpense.js中用props傳入的函式,並將上面做好的使用者輸入資料object當作參數傳到NewExpense.js裡的function
+    //執行從NewExpense.js中用props傳入的函式,並將上面做好的使用者輸入資料object當作參數往上傳到父組件NewExpense.js裡的function
     props.onGetExpenseData(userInputExpenseData);
 
     //資料拿到後清空輸入框裡面的東西
