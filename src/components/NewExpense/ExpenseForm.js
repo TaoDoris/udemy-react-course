@@ -7,9 +7,9 @@ const ExpenseForm = (props) => {
   const [enteredAmount , setEnteredAmount] = useState(''); //這邊預設狀態為string是因為，用onChange事件得到的值不管怎樣都會是字串，即便我們輸入的是數字
   const [enteredDate, setEnteredDate] = useState('');
 
+  // 用事件物件取得使用者輸入的資訊，並更新到state裡
   const titleChangeHandler = (e) => {
     setEnteredTitle(e.target.value);
-
   }
   const amountChangeHandler = (e) => {
     setEnteredAmount(e.target.value);
@@ -18,7 +18,7 @@ const ExpenseForm = (props) => {
     setEnteredDate(e.target.value);
   };
 
-  //當按下送出鈕後執行的function
+  //當按下送出鈕後執行的function(onSubmit)
   const formSubmitHandler = (e) => {
     e.preventDefault(); //點擊Add Expense按鈕時，不要送出表單
 
@@ -37,7 +37,15 @@ const ExpenseForm = (props) => {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+
+    //表單送出後，表單畫面消失，變成按鈕
+    props.onHideExpenseForm();
   };
+
+  //點擊cancel按鈕後，表單畫面消失，變成Add New Expense按鈕
+  const cancelHandler = ( )=> {
+    props.onHideExpenseForm();
+  }
 
   return (
     <form onSubmit={formSubmitHandler}>
@@ -69,6 +77,8 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        {/* 把第一個button的type設成button後，點擊時才不會將表單送出 */}
+        <button type="button" onClick={cancelHandler}>Cancel</button>
         <button type="submit">
           Add Expense
         </button>
