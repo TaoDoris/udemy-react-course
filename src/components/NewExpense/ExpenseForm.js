@@ -3,11 +3,10 @@ import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
 
+  //// 用事件物件取得使用者輸入的資訊，並更新到state裡
   const [enteredTitle , setEnteredTitle] = useState('');
   const [enteredAmount , setEnteredAmount] = useState(''); //這邊預設狀態為string是因為，用onChange事件得到的值不管怎樣都會是字串，即便我們輸入的是數字
   const [enteredDate, setEnteredDate] = useState('');
-
-  // 用事件物件取得使用者輸入的資訊，並更新到state裡
   const titleChangeHandler = (e) => {
     setEnteredTitle(e.target.value);
   }
@@ -18,14 +17,15 @@ const ExpenseForm = (props) => {
     setEnteredDate(e.target.value);
   };
 
-  //當按下送出鈕後執行的function(onSubmit)
+
+  ////當按下送出鈕後執行的function(onSubmit)
   const formSubmitHandler = (e) => {
     e.preventDefault(); //點擊Add Expense按鈕時，不要送出表單
 
     //將使用者輸入的資料做成一個object
     let userInputExpenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     // console.log(userInputExpenseData); //確認剛剛做的物件有沒有正確
@@ -42,7 +42,8 @@ const ExpenseForm = (props) => {
     props.onHideExpenseForm();
   };
 
-  //點擊cancel按鈕後，表單畫面消失，變成Add New Expense按鈕
+  
+  ////點擊cancel按鈕後，表單畫面消失，變成Add New Expense按鈕
   const cancelHandler = ( )=> {
     props.onHideExpenseForm();
   }

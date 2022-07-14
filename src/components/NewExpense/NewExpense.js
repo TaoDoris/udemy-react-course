@@ -4,18 +4,20 @@ import "./NewExpense.css";
 
 const NewExpense = (props) => {
 
-  // 設定當我的isEditing狀態為false時，下面不會顯示<ExpenseForm />
+  //// 設定當我的isEditing狀態為false時，下面不會顯示<ExpenseForm />
   const [isEditing, setIsEditing] = useState(false);
   // 點擊Click To Add New Expense這個按鈕後，會設定狀態變成true，而下面的<ExpenseForm />就會被顯示出來
   const showExpenseFormHandler = () => {
     setIsEditing(true);
   };
+  //反之
   const hideExpenseFormHandler = ()=>{
     setIsEditing(false);
   }
 
+
+   ////將從ExpenseForm.js得到的使用者資料以參數傳進這裡，並再將他做成一個新的物件，且加上id
   const getExpenseDataHandler = (userInputExpenseData) => {
-    //將從ExpenseForm得到的使用者資料以參數傳進這裡，並再將他做成一個新的物件，且加上id
     const expenseData = {
       ...userInputExpenseData,
       id: Math.random(),
@@ -42,7 +44,7 @@ const NewExpense = (props) => {
           onHideExpenseForm={hideExpenseFormHandler}
         />
       )}
-      
+
     </div>
   );
 };
